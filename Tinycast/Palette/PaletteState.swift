@@ -92,6 +92,9 @@ final class PaletteState {
 
     var canGoBack: Bool { !backStack.isEmpty }
 
+    /// The screen this session was summoned to: the bottom of the stack, or the screen itself.
+    var rootMode: PaletteMode { backStack.first?.mode ?? mode }
+
     /// Open `mode` as the root: a fresh screen with nothing behind it to go back to.
     func prepare(mode: PaletteMode) {
         backStack.removeAll()

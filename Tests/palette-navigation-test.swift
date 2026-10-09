@@ -89,6 +89,15 @@ struct PaletteNavigationTests {
         summoned.push(mode: .clipboard)
         summoned.prepare(mode: .emoji)
         expect(!summoned.canGoBack, "a summon is a new root, not a step onto the old stack")
+        expect(summoned.rootMode == .emoji, "a hotkey-summoned screen roots its own session")
+
+        let rooted = searchingLauncher()
+        rooted.push(mode: .clipboard)
+        rooted.pushCarryingQuery(mode: .ai)
+        expect(rooted.rootMode == .launcher, "screens opened from the launcher keep it as the root")
+        _ = rooted.pop()
+        _ = rooted.pop()
+        expect(rooted.rootMode == .launcher, "and the launcher roots itself once back on it")
 
         let ringed = searchingLauncher()
         ringed.push(mode: .clipboard)

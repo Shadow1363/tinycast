@@ -68,6 +68,11 @@ are reset together rather than the screen alone. A reply still streaming is the 
 asked for, and resetting would throw the answer away. Nothing is lost either way: a conversation is
 written to Chat History, and the AI Chat window's sidebar, as soon as it has a message.
 
+The App Launcher hotkey consumes that pending reset for any screen **the launcher rooted** — a
+screen reached by typing its name comes back with its back step. A screen its own hotkey summoned
+is that hotkey's alone to resume (`PaletteState.rootMode`), so the launcher hotkey opens a fresh
+root search over it instead of reopening, say, the emoji picker.
+
 Each `PaletteMode` maps to one type conforming to `PaletteScreen`, and the protocol is what keeps the
 selection invariant honest: a screen exposes `rows` as its single source of visible order, and the
 palette indexes into it. Adding a mode means adding a conformer, not a branch in `RootPaletteView`.
